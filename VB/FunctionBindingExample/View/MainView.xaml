@@ -1,0 +1,49 @@
+﻿<UserControl 
+    x:Class="FunctionBindingExample.View.MainView" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    xmlns:dxcr="http://schemas.devexpress.com/winfx/2008/xaml/charts/rangecontrolclient" 
+    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" 
+    xmlns:vm="clr-namespace:FunctionBindingExample.ViewModel"
+    mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300"
+    DataContext="{dxmvvm:ViewModelSource Type=vm:MainViewModel}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <dxc:ChartControl Name="chartControl1" Grid.Column="1" Margin="10">
+            <dxc:ChartControl.Diagram>
+                <dxc:SimpleDiagram2D>
+                    <dxc:SimpleDiagram2D.Series>
+                        <dxc:FunnelSeries2D x:Name="Series" ArgumentDataMember="Date" LegendTextPattern="{}{A: MM-yyyy}: {VP: #0.##}" ValueDataMember="ValueSummary" ToolTipEnabled="True">
+                            <dxc:FunnelSeries2D.Label>
+                                <dxc:SeriesLabel Visible="True" dxc:FunnelSeries2D.LabelPosition="Center"/>
+                            </dxc:FunnelSeries2D.Label>
+                        </dxc:FunnelSeries2D>
+                    </dxc:SimpleDiagram2D.Series>
+                </dxc:SimpleDiagram2D>
+            </dxc:ChartControl.Diagram>
+            <dxc:ChartControl.Legend >
+                <dxc:Legend Orientation="Horizontal" HorizontalPosition="Center" VerticalPosition="BottomOutside" BorderThickness="0" Margin="0,0,0,0"/>
+            </dxc:ChartControl.Legend>
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:FunctionBindingBehavior 
+                    Property="DataSource" 
+                    Target="{Binding ElementName=Series}" 
+                    Function="GetFilteredItems" 
+                    Source="{Binding}" 
+                    Arg1="{Binding SelectionRangeStart, ElementName=rangeControl}" 
+                    Arg2="{Binding SelectionRangeEnd, ElementName=rangeControl}"/>
+            </dxmvvm:Interaction.Behaviors>
+        </dxc:ChartControl>
+        <dxe:RangeControl Name="rangeControl" AllowZoom="False" Grid.Row="1" Margin="10" SelectionRangeStart="1/1/2015" SelectionRangeEnd="7/1/2015" ShowRangeBar="False">
+            <dxcr:DateTimeChartRangeControlClient SnapAlignment="Month" ArgumentLabelFormatString="{}{0:MMMM-yyyy}" ItemsSource="{Binding Points}" ArgumentDataMember="Date" ValueDataMember="ValueSummary"/>
+        </dxe:RangeControl>
+    </Grid>
+
+</UserControl>
