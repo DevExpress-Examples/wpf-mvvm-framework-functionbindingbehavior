@@ -1,7 +1,9 @@
+Imports System.Windows
+
 Namespace FunctionBindingExample
 
     Public Partial Class MainWindow
-        Inherits DevExpress.Xpf.Core.DXWindow
+        Inherits Window
 
         Public Sub New()
             Me.InitializeComponent()

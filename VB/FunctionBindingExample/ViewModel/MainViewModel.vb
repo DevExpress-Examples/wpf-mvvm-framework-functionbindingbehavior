@@ -20,7 +20,7 @@ Namespace FunctionBindingExample.ViewModel
         Public Overridable Property Points As ObservableCollection(Of DataItem)
 
         Public Function GetFilteredItems(ByVal start As Date, ByVal [end] As Date) As IList(Of DataItem)
-            Return Points.Where(Function(x) x.Date.Date >= start AndAlso x.Date.Date <= [end]).ToList()
+            Return Points.Where(Function(x) x.Date.Date >= start AndAlso x.Date.Date <= [end]).OrderByDescending(Function(x) x.ValueSummary).ToList()
         End Function
     End Class
 End Namespace
