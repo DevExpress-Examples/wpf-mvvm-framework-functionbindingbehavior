@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using DevExpress.Mvvm.POCO;
+﻿using DevExpress.Mvvm.POCO;
+using System;
 
 namespace FunctionBindingExample.Common {
     public class DataItem {

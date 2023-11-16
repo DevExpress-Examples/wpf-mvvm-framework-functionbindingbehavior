@@ -20,9 +20,9 @@
             <dxc:ChartControl.Diagram>
                 <dxc:SimpleDiagram2D>
                     <dxc:SimpleDiagram2D.Series>
-                        <dxc:FunnelSeries2D x:Name="Series" ArgumentDataMember="Date" LegendTextPattern="{}{A: MM-yyyy}: {VP: #0.##}" ValueDataMember="ValueSummary" ToolTipEnabled="True">
+                        <dxc:FunnelSeries2D x:Name="Series" ArgumentDataMember="Date" LegendTextPattern="{}{A: MM-yyyy}: {VP:##.##%}" ValueDataMember="ValueSummary" ToolTipEnabled="True" LabelsVisibility="True">
                             <dxc:FunnelSeries2D.Label>
-                                <dxc:SeriesLabel Visible="True" dxc:FunnelSeries2D.LabelPosition="Center"/>
+                                <dxc:SeriesLabel TextPattern="{}{VP:##.##%}" dxc:FunnelSeries2D.LabelPosition="Center"/>
                             </dxc:FunnelSeries2D.Label>
                         </dxc:FunnelSeries2D>
                     </dxc:SimpleDiagram2D.Series>

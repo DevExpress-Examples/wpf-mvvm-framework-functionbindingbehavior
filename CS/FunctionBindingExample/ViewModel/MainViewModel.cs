@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using DevExpress.Mvvm.POCO;
 using System.Collections.Generic;
@@ -39,7 +38,7 @@ namespace FunctionBindingExample.ViewModel {
         public virtual ObservableCollection<DataItem> Points { get; set; }
 
         public IList<DataItem> GetFilteredItems(DateTime start, DateTime end) {
-            return this.Points.Where(x => x.Date.Date >= start && x.Date.Date <= end).ToList();
+            return this.Points.Where(x => x.Date.Date >= start && x.Date.Date <= end).OrderByDescending(x => x.ValueSummary).ToList();
         }
     }
 }
